@@ -1,0 +1,49 @@
+/* Minimal responsive fixes — does not change existing styles, only ensures layout adapts */
+/* 1) Make images and media scale */
+img, video, iframe, svg, picture {
+  max-width: 100% !important;
+  height: auto !important;
+  display: block;
+}
+
+/* 2) Make container elements allow wrapping and not force horizontal scroll */
+* { box-sizing: border-box; }
+
+html, body { min-width: 0 !important; overflow-x: hidden; }
+
+/* 3) Ensure any fixed-width elements can shrink on small screens */
+[style*="width:"] {
+  max-width: 100% !important;
+  width: auto!important;
+}
+
+/* 4) Make text scale a bit on small devices without changing font choices */
+@media (max-width: 480px) {
+  body { -webkit-text-size-adjust: 100%; font-size: 16px; }
+  .container, .content, main, section, article { padding-left: 1rem !important; padding-right: 1rem !important; }
+  button, a, input, textarea { font-size: 16px !important; }
+}
+
+/* Mobile layout fix for the note background */
+@media (max-width: 768px) {
+  .note, .paper, .container, main, section {
+    width: 95% !important;
+    max-width: 95% !important;
+    margin: 0 auto !important;
+  }
+  body {
+    overflow-x: hidden;
+  }
+}
+
+/* 5) Maintain click targets */
+button, a { min-height: 44px; min-width: 44px; display: inline-flex; align-items: center; justify-content: center; }
+
+/* 6) Ensure any background images that might overflow are contained */
+[data-bg] { background-size: cover !important; background-position: center !important; }
+
+/* 7) Avoid layout-breaking long words */
+* { word-wrap: break-word; word-break: break-word; }
+
+/* 8) If there are absolute/fixed positioned large elements, allow them to be scrollable */
+html.fixed-focused body { overflow-x: auto; }
